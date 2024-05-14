@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker - Progress Tracking</title>
+    <!-- Include CSS stylesheets for styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #FFA500; /* Orange */
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #FFA500; /* Orange */
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="date"], input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #FFA500; /* Orange */
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #fffefe;
+            color: #7e786a; /* Orange */
+        }
+        button {
+            background-color: #FFA500; /* Orange */
+            color: #111; /* Black */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #D2691E; /* Dark Orange */
+        }
+        canvas {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Progress Tracking</h1>
+        <form id="workout-form">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="workout">Workout:</label>
+            <select id="workout" name="workout" required>
+                <option value="pushups">Pushups</option>
+                <option value="pullups">Pullups</option>
+                <option value="cardio">Cardio</option>
+                <option value="squats">Squats</option>
+            </select>
+            <label for="duration">Duration (minutes):</label>
+            <input type="number" id="duration" name="duration" min="1" required>
+            <button type="submit">Add Workout</button>
+        </form>
+        <canvas id="calories-chart"></canvas>
+        <canvas id="weekly-calories-chart"></canvas>
+    </div>
+
+    <!-- Include JavaScript libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script>
+        // JavaScript code for handling form submission and chart creation
+        document.addEventListener('DOMContentLoaded', function() {
+            const workoutForm = document.getElementById('workout-form');
+            const caloriesChart = document.getElementById('calories-chart').getContext('2d');
+            const weeklyCaloriesChart = document.getElementById('weekly-calories-chart').getContext('2d');
+            let workouts = [];
+
+            // Event listener for form submission
+            workoutForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const date = document.getElementById('date').value;
+                const workout = document.getElementById('workout').value;
+                const duration = parseInt(document.getElementById('duration').value);
+                const caloriesBurned = calculateCaloriesBurned(duration);
+                workouts.push({ date, workout, duration, caloriesBurned });
+                renderCharts();
+                workoutForm.reset();
+            });
+
+            // Function to calculate calories burned based on workout duration
+            function calculateCaloriesBurned(duration) {
+                // Example calculation (replace with your own formula)
+                return duration * 10; // Assuming 10 calories burned per minute
+            }
+
+            // Function to render charts
+            function renderCharts() {
+                // Extract data for charts
+                const dates = workouts.map(workout => workout.date);
+                const caloriesBurnedData = workouts.map(workout => workout.caloriesBurned);
+                const weeklyCaloriesBurned = workouts.reduce((acc, workout) => {
+                    const week = new Date(workout.date).toLocaleDateString(undefined, { week: 'numeric' });
+                    acc[week] = (acc[week] || 0) + workout.caloriesBurned;
+                    return acc;
+                }, {});
+
+                // Create and update calories burned chart
+                new Chart(caloriesChart, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Calories Burned',
+                            data: caloriesBurnedData,
+                            backgroundColor: 'rgba(255, 165, 0, 0.2)', /* Orange */
+                            borderColor: 'rgba(255, 165, 0, 1)', /* Orange */
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                // Create and update weekly calories burned chart
+                new Chart(weeklyCaloriesChart, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(weeklyCaloriesBurned),
+                        datasets: [{
+                            label: 'Weekly Calories Burned',
+                            data: Object.values(weeklyCaloriesBurned),
+                            backgroundColor: 'rgba(255, 165, 0, 0.2)', /* Orange */
+                            borderColor: 'rgba(255, 165, 0, 1)', /* Orange */
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
