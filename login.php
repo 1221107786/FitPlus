@@ -1,0 +1,41 @@
+<?php
+$servername = "localhost";
+$username = "FitPlus"; // 
+$password = "-kLpc_0I_HFlm1G4"; 
+$dbname = "fitplus";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if the form is submitted
+if (isset($_POST['loginSubmit'])) {
+    $email = $_POST['loginEmail'];
+    $password = $_POST['loginPassword'];
+
+    // Prepare and bind
+    $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+
+    // Execute the statement
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($id, $hashed_password);
+    $stmt->fetch();
+
+    if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
+        echo "Login successful!";
+        // You can redirect the user to the dashboard or start a session here
+    } else {
+        echo "Invalid email or password!";
+    }
+
+    $stmt->close();
+}
+
+$conn->close();
+?>
