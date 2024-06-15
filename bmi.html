@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness | BMI </title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./bmi.css">
+    
+</head>
+<>
+   <section class="my-section">
+        <div class="my-left-div">
+          <a href="#"><img src="https://www.diabetes.co.uk/wp-content/uploads/2022/09/bmi-section.jpg" alt=""></a>
+        </div>
+        <div class="my-container">
+          <div class="my-text-content">
+            <div class="my-logo">
+              <img src="https://dcassetcdn.com/design_img/3571610/515701/515701_19560887_3571610_166c5b12_image.jpg" alt="Logo" class="my-logo-img">
+            </div>
+            <div class="my-title">BMI Calculator</div>
+            <div class="my-result-box">
+              <p class="my-bmi-result">Your BMI is :</p>
+              <p id="result">20.0</p>
+              <p id="category" class="my-bmi-category">Normal weight</p>
+            </div>
+            <p class="my-text-content">Slide to your weight and height.</p>
+            <input type="range" name="" min="20" max="200" id="weight" class="my-slider" oninput="calculate()">
+            <span id="weight-val" class="my-value">20 Kg</span>
+            <input type="range" min="100" max="250" value="100" id="height" class="my-range-input"oninput="calculate()" >
+            <span id="height-val" class="my-value">100 cm</span>
+          </div>
+
+        </div>
+      </section> 
+
+      <section class="my-section">
+        <div>
+          <p class="my-title"> Recommended Exercises</p>
+          <p class="my-title">Would you love to find out how to have a normal BMI? </p>
+
+          <button class="my-button" onclick="calculateBMI()" > Yes?</button>
+          <p id="bmiResult" class="my-text-content"></p>
+          <p id="exerciseSuggestion" class="my-text-content" ></p>
+
+        </div>
+      </section>
+
+    
+
+      <script src = "./bmi.js" charset = "utf-8"></script>
+    
+</body>
+</html>
