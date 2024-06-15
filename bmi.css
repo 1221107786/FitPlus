@@ -1,0 +1,134 @@
+/* Styling for the section */
+.my-section {
+    display: flex;
+    margin:auto;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 40px;
+    max-width: 1000px;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.893);
+    border-radius: 20px;
+    /* margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px; */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     }
+  
+  /* Styling for the left div */
+  .my-left-div {
+    width: 50%;
+    padding: 8px;
+    margin-bottom: 0;
+  }
+  
+  /* Styling for the image within the left div */
+  .my-left-div img {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    margin-top:50px;
+  }
+  
+  /* Styling for the container */
+  .my-container {
+    display: flex;
+    gap: 8px;
+  }
+  
+  /* Styling for the logo image */
+  .my-logo-img {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+  
+  /* Styling for the title */
+  .my-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the text content */
+  .my-text-content {
+    padding: 12px;
+    margin: auto;
+  }
+  
+  /* Styling for the result box */
+  .my-result-box {
+    background-color: #f9ac54;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for the BMI result text */
+  .my-bmi-result {
+    margin: 0;
+  }
+  
+  /* Styling for the BMI category */
+  .my-bmi-category {
+    color: #ffffff;
+  }
+  
+  /* Styling for the slider */
+  .my-slider {
+    margin: 10px; /* Center the slider */
+  }
+  
+  /* Styling for the range inputs */
+  .my-range-input {
+    margin-left: 20px;
+  }
+  
+  /* Styling for the weight and height values */
+  .my-value {
+    margin-left: 20px;
+  }
+
+  .my-button{
+    background-color: #f9ac54;
+    display: flex;
+    justify-content: center;
+    margin:auto;
+    padding: 6px;
+    border-radius:6px;
+  }
+  
+  @media (max-width: 768px) {
+    .my-section {
+      flex-direction: column;
+      align-items: center;
+      max-width: 85%; /* Adjust this value as needed */
+      padding: 10px;
+    }
+    
+    .my-left-div {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    .my-container {
+      width: 100%;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) and (max-width: 1440px) {
+    /* Your styles for laptops here */
+    .my-section {
+      max-width: 600px;
+      margin-top: 40px;
+    }
+  }
+  
