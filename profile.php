@@ -357,7 +357,7 @@ table tbody tr:nth-child(odd) {
             <li class="link"><a href="display_goals.php">DELETE GOALS</a></li>
             <li class="link"><a href="delete_progress.php">DELETE PROGRESS</a></li>
             <li class="link"><a href="edit_goals.php">EDIT GOAL</a></li>
-            <li class="link"><a href="_progress.php">EDIT PROGRESS</a></li>
+            <li class="link"><a href="edit_progress.php">EDIT PROGRESS</a></li>
             <li class="link"><a href="logout.php">LOG OUT</a></li>
             <li class="link"><a href="delete_account.php">DELETE ACCOUNT</a></li>
         </ul>
